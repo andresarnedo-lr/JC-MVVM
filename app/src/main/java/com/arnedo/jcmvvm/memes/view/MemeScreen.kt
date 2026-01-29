@@ -10,19 +10,31 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.arnedo.jcmvvm.R
+import com.arnedo.jcmvvm.entities.Meme
 import com.arnedo.jcmvvm.ui.components.MyProgressFullScreen
 import com.arnedo.jcmvvm.ui.components.MyTextTitle
 
 
 @Composable
 fun MainView(modifier : Modifier) {
+    val memes = listOf(Meme(0, "Test", "https://i.imgflip.com/1bij.jpg", 0, 0, 0),
+        Meme(0, "Test", "https://i.imgflip.com/1bij.jpg", 0, 0, 0),
+        Meme(0, "Test", "https://i.imgflip.com/1bij.jpg", 0, 0, 0),
+        Meme(0, "Test", "https://i.imgflip.com/1bij.jpg", 0, 0, 0),
+        Meme(0, "Test", "https://i.imgflip.com/1bij.jpg", 0, 0, 0))
+
+
     Box(modifier){
-        Column(){
+        Column{
             MyTextTitle(R.string.app_name)
 
             LazyVerticalGrid(columns = GridCells.Adaptive(
                 minSize = dimensionResource(R.dimen.img_grid_size)
             )){
+                items(memes.size){ index ->
+                    val meme = memes[index]
+                    ItemMemeView(meme)
+                }
             }
         }
 

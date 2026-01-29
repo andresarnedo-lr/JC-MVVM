@@ -20,11 +20,6 @@ import com.arnedo.jcmvvm.ui.components.MyCoilImage
 import com.arnedo.jcmvvm.ui.theme.Typography
 import com.arnedo.jcmvvm.ui.theme.WhiteTransparent
 
-@Preview(showBackground = true)
-@Composable
-fun ItemMemeViewPreview() {
-    ItemMemeView (meme = Meme(1, "Test", "Test", 1, 1, 1))
-}
 
 @Composable
 fun ItemMemeView(meme: Meme) {
@@ -48,4 +43,12 @@ fun ItemMemeView(meme: Meme) {
                 )
         }
     }
+}
+
+
+
+@Preview(showBackground = true)
+@Composable
+fun ItemMemeViewPreview() {
+    ItemMemeView (meme = Meme(0, "Test", "Test", 0, 0, 0))
 }
