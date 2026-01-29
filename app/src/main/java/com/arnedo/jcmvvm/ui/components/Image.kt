@@ -1,6 +1,5 @@
 package com.arnedo.jcmvvm.ui.components
 
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BrokenImage
@@ -8,6 +7,7 @@ import androidx.compose.material.icons.filled.Timer
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -19,7 +19,8 @@ import coil3.request.crossfade
 @Composable
 fun MyCoilImage(
     url: String,
-    sizeRes: Int
+    modifier: Modifier = Modifier,
+    shape : Shape = CircleShape
 ){
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
@@ -30,8 +31,7 @@ fun MyCoilImage(
         placeholder = rememberVectorPainter(Icons.Default.Timer),
         error = rememberVectorPainter(Icons.Default.BrokenImage),
         contentScale = ContentScale.Crop,
-        modifier = Modifier
-            .size(dimensionResource(sizeRes))
-            .clip(CircleShape)
+        modifier = modifier
+            .clip(shape)
     )
 }
