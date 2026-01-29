@@ -23,7 +23,8 @@ import com.arnedo.jcmvvm.ui.theme.WhiteTransparent
 
 @Composable
 fun ItemMemeView(meme: Meme) {
-    Box(contentAlignment = Alignment.BottomCenter){
+    Box(modifier = Modifier.padding(vertical = dimensionResource(R.dimen.common_padding_micro)),
+            contentAlignment = Alignment.BottomCenter){
         MyCoilImage(
             url = meme.url,
             shape = RectangleShape,
