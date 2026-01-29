@@ -17,7 +17,7 @@
     <dimen name="rb_row_height">56dp</dimen>
     
     <dimen name="img_cover_size">160dp</dimen>
-    <dimen name="img_list_size">64dp</dimen>
+    <dimen name="img_grid_size">128dp</dimen>
 
 
 </resources>
