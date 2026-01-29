@@ -6,22 +6,23 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.arnedo.jcmvvm.R
 import com.arnedo.jcmvvm.entities.Meme
+import com.arnedo.jcmvvm.memes.viewmodel.MemeViewModel
 import com.arnedo.jcmvvm.ui.components.MyProgressFullScreen
 import com.arnedo.jcmvvm.ui.components.MyTextTitle
 
 
 @Composable
-fun MainView(modifier : Modifier) {
-    val memes = listOf(Meme(0, "Test", "https://i.imgflip.com/1bij.jpg", 0, 0, 0),
-        Meme(0, "Test", "https://i.imgflip.com/1bij.jpg", 0, 0, 0),
-        Meme(0, "Test", "https://i.imgflip.com/1bij.jpg", 0, 0, 0),
-        Meme(0, "Test", "https://i.imgflip.com/1bij.jpg", 0, 0, 0),
-        Meme(0, "Test", "https://i.imgflip.com/1bij.jpg", 0, 0, 0))
+fun MainView(modifier : Modifier, viewModel : MemeViewModel = viewModel()) {
+    val uiState by viewModel.uiState.collectAsState()
+
 
 
     Box(modifier){
@@ -31,14 +32,15 @@ fun MainView(modifier : Modifier) {
             LazyVerticalGrid(columns = GridCells.Adaptive(
                 minSize = dimensionResource(R.dimen.img_grid_size)
             )){
-                items(memes.size){ index ->
-                    val meme = memes[index]
+                items(uiState.items.size) { index ->
+                    val meme = uiState.items[index]
                     ItemMemeView(meme)
                 }
+
             }
         }
 
-        AnimatedVisibility(visible = false) { MyProgressFullScreen() }
+        AnimatedVisibility(visible = uiState.inProgress) { MyProgressFullScreen() }
     }
 }
 
